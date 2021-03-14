@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private TextView textView;
@@ -28,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
                 String s = inputText.getText().toString();
                 int kg = Integer.parseInt(s);
                 double pound = 2.205*kg;
-                textView.setText("The Corresponding value in pound is " + pound);
+                DecimalFormat df = new DecimalFormat("#.###");
+                df.setRoundingMode(RoundingMode.CEILING);
+                double poundF = Double.parseDouble(df.format(pound));
+                textView.setText("The Corresponding value in pound is " + poundF);
             }
         });
     }
